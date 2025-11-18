@@ -1,0 +1,1 @@
+FROM image.sourcefind.cn:5000/dcu/admin/base/pytorch:2.4.1-ubuntu22.04-dtk25.04-py3.10-fixpy-onnx1.19.2

@@ -1,0 +1,7 @@
+{
+  "conv": 1.118,
+  "group_normalization": 0.260,
+  "batch_normalization": 6.891,
+  "leakyrelu": 1.258,
+  "attention": 0.268
+}
