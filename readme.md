@@ -58,24 +58,6 @@ This script builds
 
 Copy or symlink `libcustom_op_library.so` next to your ONNX Runtime application, or register it explicitly through `SessionOptions.register_custom_ops_library` as shown in `benchmark.py`.
 
-## Benchmark & Accuracy Validation
-
-`benchmark.py` generates random inputs, runs warmups, measures per-sample latency, and (optionally) saves protobuf I/O pairs for regression tests. Example usage:
-
-```bash
-python benchmark.py \
-  -i path/to/model.onnx \
-  -d data/golden \
-  -b 1 \
-  -w 50 \
-  -n 100 \
-  -t 1
-```
-
-- Use `-c True` to compare optimized outputs against saved `.pb` tensors (SNR + cosine metrics are printed per output).
-- `model_setbs` and related helpers in `cuda_utils.py` let you sweep different batch sizes quickly.
-- The script always registers `libcustom_op_library.so` so the ROCm Execution Provider dispatches to our kernels.
-
 ## Optimization Playbook
 
 ### Conv2d
@@ -113,3 +95,4 @@ hipprof traces show the five kernels’ cumulative duration dropping from 1,062,
 - `ONNX_码疯冲击.pptx`: slide deck used during the competition defense, summarizing methodology, innovation points, and ranking records.
 
 Feel free to adapt these kernels to other ROCm projects—each section above is modular, and the build + benchmark tooling is designed to be a drop-in starting point for additional operator optimizations.
+
