@@ -58,24 +58,6 @@ bash compile.sh
 
 随后将 `libcustom_op_library.so` 拷贝或软链至 ONNX Runtime 应用目录，或按 `benchmark.py` 示例通过 `SessionOptions.register_custom_ops_library` 动态加载。
 
-## 基准测试与精度校验
-
-`benchmark.py` 会随机生成输入、执行预热、统计单位样本时延，并可选保存 `.pb` 形式的 I/O。示例：
-
-```bash
-python benchmark.py \
-  -i path/to/model.onnx \
-  -d data/golden \
-  -b 1 \
-  -w 50 \
-  -n 100 \
-  -t 1
-```
-
-- 使用 `-c True` 可对比保存的基准输出，逐项打印 SNR 与 Cosine。
-- `cuda_utils.py` 中的 `model_setbs` 等函数可帮助批量调整 batch size。
-- 程序会自动注册 `libcustom_op_library.so`，让 ROCm EP 调度到自定义 kernel。
-
 ## 优化手册
 
 ### Conv2d
@@ -112,3 +94,4 @@ python benchmark.py \
 - `ONNX_码疯冲击.pptx`：答辩汇报用幻灯片，概述方法、创新点及平台排名记录。
 
 欢迎将这些 kernel 作为 ROCm 项目的起点，我们的编译与基准脚本也可直接复用，帮助你快速验证新的算子优化思路。
+
